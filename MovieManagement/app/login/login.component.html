@@ -1,0 +1,24 @@
+<mat-card class="card-style">
+  <mat-card-content>
+    <mat-card-title>Login</mat-card-title>
+
+    <div *ngIf="autherized" class="text-danger">
+      <h3>{{errorMessage}}</h3>
+    </div>
+
+    <form class="form-style" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+      <div>
+        <mat-form-field>
+          <input style="color:white" name="User id" [formControl]="loginFormGroup.controls['user_id']" matInput placeholder="">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" name="Password" [formControl]="loginFormGroup.controls['user_pass']" matInput placeholder="">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="accent">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+

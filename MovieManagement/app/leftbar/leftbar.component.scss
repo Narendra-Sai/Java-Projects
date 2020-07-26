@@ -1,0 +1,23 @@
+@import 'variables';
+
+.leftsidebar {
+  width: 150px;
+  height: 1vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 1px solid;
+
+  mat-toolbar {
+    background-color: $primary-color;
+  }
+
+  button {
+    background-color: $primary-color;
+  }
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

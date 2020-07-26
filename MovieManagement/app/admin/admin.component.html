@@ -1,0 +1,197 @@
+<mat-card >
+  <mat-card-content>
+
+    <div class="main-container">
+      <div class="screen">
+        <div>
+          <strong>Admin Operation </strong>
+        </div>
+        <div class="movie">
+          <span class="spacer"></span>
+          <button color="primary" (click)="onCreate()"> Create</button>
+          <button color="primary" (click)="onUpdate()"> Update</button>
+          <button color="primary" (click)="onDelete()"> Delete</button>
+          <button color="primary" (click)="onLink()">Link</button>
+
+        </div>
+
+        <div style="background-color: yellow">
+          <div [hidden]="isAdd">
+            <button color="primary" (click)="onMovieCreate()"> Movie</button>
+            <button color="primary" (click)="onTheaterCreate()"> Theater</button>
+            <button color="primary" (click)="onScreenCreate()"> Screen</button>
+            <button color="primary" (click)="onShowCreate()">Show</button>
+          </div>
+          <div [hidden]="isUpdate">
+          </div>
+          <div [hidden]="isDelete">
+          </div>
+          <div [hidden]="isLink">
+            <button color="primary" (click)="onTheaterLinking()"> Theater</button>
+          </div>
+        </div>
+
+
+
+
+        <div [hidden]="isMovieCreation" style="background-color: aqua">
+          <form class="form-style" [formGroup]="movieFormGroup" (ngSubmit)="createNewMovie()">
+
+            <mat-form-field>
+              <input name="MovieName" [formControl]="movieFormGroup.controls['MovieName']" matInput placeholder="MovieName">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="MovieDescription" [formControl]="movieFormGroup.controls['MovieDescription']" matInput placeholder="MovieDescription">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="MovieLength" [formControl]="movieFormGroup.controls['MovieLength']" matInput placeholder="MovieLength">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="MovieRating" [formControl]="movieFormGroup.controls['MovieRating']" matInput placeholder="MovieRating">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="MovieImage" [formControl]="movieFormGroup.controls['MovieImage']" matInput placeholder="MovieImage">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="MovieCover" [formControl]="movieFormGroup.controls['MovieCover']" matInput placeholder="MovieCover">
+            </mat-form-field>
+
+            <button mat-raised-button color="accent">Add Movie</button>
+
+          </form>
+        </div>
+
+
+
+
+
+
+
+
+        <div [hidden]="isTheaterCreation" style="background-color: aqua">
+          <form class="form-style" [formGroup]="theaterFormGroup" (ngSubmit)="createNewTheater()">
+
+            <mat-form-field>
+              <input name="TheaterName" [formControl]="theaterFormGroup.controls['TheaterName']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="TheaterAddress" [formControl]="theaterFormGroup.controls['TheaterAddress']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="TheaterCiti" [formControl]="theaterFormGroup.controls['TheaterCiti']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="TheaterRating" [formControl]="theaterFormGroup.controls['TheaterRating']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="TheaterImage" [formControl]="theaterFormGroup.controls['TheaterImage']" matInput placeholder="">
+            </mat-form-field>
+
+
+            <button mat-raised-button color="accent">Add Theater</button>
+
+          </form>
+        </div>
+
+        <div [hidden]="isScreenCreation" style="background-color: aqua">
+          <form class="form-style" [formGroup]="screenFormGroup" (ngSubmit)="createNewScreen()">
+
+            <mat-form-field>
+              <input name="ScreenName" [formControl]="screenFormGroup.controls['ScreenName']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="Capacity" [formControl]="screenFormGroup.controls['Capacity']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="Availability" [formControl]="screenFormGroup.controls['Availability']" matInput placeholder="">
+            </mat-form-field>
+
+            <button mat-raised-button color="accent">Add screen</button>
+
+          </form>
+        </div>
+
+        <div [hidden]="isShowCreation" style="background-color: aqua">
+          <form class="form-style" [formGroup]="showFormGroup" (ngSubmit)="createNewShow()">
+
+            <mat-form-field>
+              <input name="StartTime" [formControl]="showFormGroup.controls['StartTime']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="EndTime" [formControl]="showFormGroup.controls['EndTime']" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input name="Price" [formControl]="showFormGroup.controls['Price']" matInput placeholder="">
+            </mat-form-field>
+
+            <button mat-raised-button color="accent">Add show</button>
+
+          </form>
+        </div>
+
+        <!--Linking Begin -->
+        <div [hidden]="isTheaterLinking" style="background-color: aqua">
+          <form class="form-style" (ngSubmit)="linkTheaterSubmit()">
+            <mat-form-field>
+              <mat-label>Select Theater</mat-label>
+              <mat-select (selectionChange)="onLinkTheaterChange($event)">
+                <mat-option *ngFor="let theater of theaters" [value]="theater.id">
+                  {{theater.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Select Screen</mat-label>
+              <mat-select (selectionChange)="onLinkScreenChange($event)">
+                <mat-option *ngFor="let screen of screens" [value]="screen.id">
+                  {{screen.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Select Show</mat-label>
+              <mat-select (selectionChange)="onLinkShowChange($event)">
+                <mat-option *ngFor="let show of shows" [value]="show.id">
+                  {{show.showTime}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            
+            <mat-form-field>
+              <mat-label>Select Movie</mat-label>
+              <mat-select (selectionChange)="onLinkMovieChange($event)">
+                <mat-option *ngFor="let movie of movies" [value]="movie.id">
+                  {{movie.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <button mat-raised-button color="accent">Link</button>
+
+          </form>
+                    </div>
+                    <!--Linking End -->
+
+
+
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,28 @@
+<div *ngIf="screens" class="screen-container">
+  <div>
+    <span class="count">
+      {{screens.length}} Available Screens
+    </span>
+  </div>
+
+<div class="screen" *ngFor="let screen of screens">
+    <div class="movie">
+      <span class="spacer">Screen Name : {{screen.name}}</span>
+      <span class="spacer">Screen Capacity : {{screen.capacity}}</span>
+      <span class="spacer">Screen Availability : {{screen.availability}}</span>
+    </div>
+    <div *ngIf="screen.showList" >
+            <div class="show"  *ngFor="let show of screen.showList">
+                <a [routerLink]="['/ticket', show.id, show.showTime]" (click)="onSelect(show)">
+                <span>show Time : {{show.showTime}}</span>
+                <br>
+                <span>show price : {{show.price}}</span>
+              </a>
+            </div>
+     </div>
+</div>
+
+
+
+</div>
+

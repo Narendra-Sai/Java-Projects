@@ -1,0 +1,23 @@
+<div class="main-container">
+  <div *ngIf="theaters" class="movies-container">
+    <div class="movies-list-header">
+      <span class="count">
+        {{theaters.length}} Theater
+      </span>
+    </div>
+    <hr>
+    <div class="movies-list">
+      <div *ngFor="let theater of theaters" class="movie">
+        <a [routerLink]="['/screen/' + theater.id ]">
+          <figure>
+            <img src="assets/theaters/{{theater.img}}" alt="movie poster">
+          </figure>
+          <span class="title">{{theater.name}}</span>
+          <span class="rate">{{theater.rating}}</span>
+          <span class="rate">{{theater.address}}</span>
+          <span class="rate">{{theater.citi}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

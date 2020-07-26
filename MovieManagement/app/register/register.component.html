@@ -1,0 +1,39 @@
+<mat-card class="card-style">
+  <mat-card-content>
+    <mat-card-title>
+      Sign in
+    </mat-card-title>
+
+    <div *ngIf="!registered" class="text-danger">
+      <h3>{{errorMessage}}</h3>
+    </div>
+
+    <form class="form-style" [formGroup]="registrationFormGroup" (ngSubmit)="registerUser()">
+      <div>
+        <mat-form-field>
+          <input name="FirstName" [formControl]="registrationFormGroup.controls['FirstName']" matInput placeholder="FirstName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="LastName" [formControl]="registrationFormGroup.controls['LastName']" matInput placeholder="LastName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="Email" [formControl]="registrationFormGroup.controls['Email']" matInput placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" name="Password" [formControl]="registrationFormGroup.controls['Password']" matInput placeholder="Password">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" name="ConfirmPassword" [formControl]="registrationFormGroup.controls['ConfirmPassword']" matInput placeholder="ConfirmPassword">
+        </mat-form-field>
+
+      </div>
+      <button mat-raised-button color="accent">Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+

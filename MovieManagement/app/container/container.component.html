@@ -1,0 +1,22 @@
+<div class="main-container">
+  <div *ngIf="visibleMovies" class="movies-container">
+    <div class="movies-list-header">
+      <span class="count">
+        {{visibleMovies.length}} Movies
+      </span>
+    </div>
+    <hr>
+    <div class="movies-list">
+      <div *ngFor="let movie of visibleMovies"  class="movie" >
+        <a [routerLink]="['/movie/' + movie.id ]">
+          
+            <figure>
+              <img  src="assets/movies/{{movie.img}}" alt="movie poster">
+            </figure>
+            <span class="title">{{movie.name}}</span>
+            <span class="rate">{{movie.rating}}</span>
+          </a>
+</div>
+    </div>
+  </div>
+</div>

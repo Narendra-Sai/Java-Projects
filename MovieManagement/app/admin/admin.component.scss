@@ -1,0 +1,62 @@
+@import 'variables';
+
+.main-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  background-color: red;
+  max-height: 100vh;
+  max-width: 100%;
+}
+
+.movie {
+  margin-bottom: 1em;
+  flex-basis: 1%;
+  background-color: aqua;
+  font-style: oblique;
+  font-size: x-large;
+  font-variant-caps: all-petite-caps;
+  color: red;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 100%;
+}
+
+.screen {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  background-color: chocolate;
+}
+
+.spacer {
+  flex: 1 3 auto;
+}
+
+
+.movie {
+  margin-bottom: 1em;
+  flex-basis: 1%;
+}
+
+
+
+.card-style {
+  display: flex;
+  flex-direction: column;
+  align-items: safe center;
+  background-color: $primary-color;
+
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary-color;
+    position: relative;
+    min-width: 200px;
+    max-width: 200px;
+  }
+}

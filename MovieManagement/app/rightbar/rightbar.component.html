@@ -1,0 +1,10 @@
+<div class="rightsidebar">
+  <mat-toolbar color="primary">
+    <span class="spacer"></span>
+    <button *ngIf="authservice.isAdminUser()" mat-raised-button color="primary" matBadge="10" (click)="admin()"> Admin</button>
+    <button *ngIf="!authservice.isUserLoggedIn()" mat-raised-button color="primary" matBadge="10" (click)="login()"> Login</button>
+    <button *ngIf="authservice.isUserLoggedIn()" mat-raised-button color="primary" matBadge="10" (click)="logout()"> Logout</button>
+    <button mat-raised-button color="primary" matBadge="10" (click)="registration()">Sign in</button>
+  </mat-toolbar>
+</div>
+
